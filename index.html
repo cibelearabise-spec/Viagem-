@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel App - Fluxo Completo</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function switchScreen(screenId) {
+            // Oculta todas as telas
+            document.querySelectorAll('.app-screen').forEach(el => el.classList.add('hidden'));
+            // Exibe a tela selecionada
+            document.getElementById(screenId).classList.remove('hidden');
+            
+            // Atualiza o estado ativo dos botões do menu superior
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('bg-green-700', 'text-white'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.add('bg-gray-800', 'text-gray-300'));
+            
+            const activeBtn = document.getElementById('btn-' + screenId);
+            if(activeBtn) {
+                activeBtn.classList.remove('bg-gray-800', 'text-gray-300');
+                activeBtn.classList.add('bg-green-700', 'text-white');
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-950 flex flex-col items-center justify-min min-h-screen py-8 text-white font-sans">
+
+    <!-- Menu Superior para Alternar as Telas (Simulando o fluxo da imagem) -->
+    <div class="mb-6 flex flex-wrap justify-center gap-2 px-4 max-w-xl">
+        <button id="btn-screen-1" onclick="switchScreen('screen-1')" class="nav-btn bg-green-700 text-white text-xs px-3 py-1.5 rounded-lg font-medium transition">01. Introduce</button>
+        <button id="btn-screen-2" onclick="switchScreen('screen-2')" class="nav-btn bg-gray-800 text-gray-300 text-xs px-3 py-1.5 rounded-lg font-medium transition">02. Discover</button>
+        <button id="btn-screen-3" onclick="switchScreen('screen-3')" class="nav-btn bg-gray-800 text-gray-300 text-xs px-3 py-1.5 rounded-lg font-medium transition">03. Use</button>
+        <button id="btn-screen-4" onclick="switchScreen('screen-4')" class="nav-btn bg-gray-800 text-gray-300 text-xs px-3 py-1.5 rounded-lg font-medium transition">04. Understand</button>
+        <button id="btn-screen-5" onclick="switchScreen('screen-5')" class="nav-btn bg-gray-800 text-gray-300 text-xs px-3 py-1.5 rounded-lg font-medium transition">05. Convert</button>
+    </div>
+
+    <!-- Moldura do Smartphone -->
+    <div class="relative w-[360px] h-[740px] bg-gray-900 rounded-[40px] overflow-hidden shadow-2xl border-[8px] border-gray-800 flex flex-col justify-between">
+
+        <!-- TELA 1: INTRODUCE -->
+        <div id="screen-1" class="app-screen absolute inset-0 bg-cover bg-center flex flex-col justify-between p-6 z-10" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=720');">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/20 z-0"></div>
+            
+            <div class="relative z-10 flex justify-between items-center text-white text-xs font-semibold pt-1">
+                <span>9:41</span>
+                <div class="w-4 h-2.5 border border-white rounded-sm relative flex items-center px-0.5"><div class="w-full h-1.5 bg-white rounded-2xs"></div></div>
+            </div>
+
+            <div class="relative z-10 flex flex-col justify-end pb-4">
+                <h1 class="text-white text-3xl font-bold leading-tight mb-3">Discover new places, create better memories.</h1>
+                <p class="text-gray-300 text-xs mb-6">Personalized travel plans, local experiences and more.</p>
+                <button onclick="switchScreen('screen-2')" class="w-full bg-white text-gray-900 font-medium py-3.5 px-6 rounded-full flex items-center justify-between shadow-lg hover:bg-gray-100 transition">
+                    <span class="text-sm">Get Started</span>
+                    <span class="text-lg font-bold">→</span>
+                </button>
+                <div class="flex justify-center items-center space-x-1.5 mt-6">
+                    <span class="w-5 h-1.5 bg-white rounded-full"></span>
+                    <span class="w-1.5 h-1.5 bg-white/50 rounded-full"></span>
+                    <span class="w-1.5 h-1.5 bg-white/50 rounded-full"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- TELA 2: DISCOVER -->
+        <div id="screen-2" class="app-screen absolute inset-0 bg-gray-50 flex flex-col justify-between z-0 hidden text-gray-900">
+            <div class="px-6 pt-6 pb-2 bg-white">
+                <div class="flex justify-between items-center mb-4">
+                    <div>
+                        <p class="text-xs text-gray-400">Good morning,</p>
+                        <h2 class="text-lg font-bold text-gray-800">Alex 🤩</h2>
+                    </div>
+                    <div class="w-10 h-10 rounded-full overflow-hidden border border-gray-200">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="relative mb-3">
+                    <input type="text" placeholder="Search destinations, trails..." class="w-full bg-gray-100 text-xs text-gray-700 pl-9 pr-4 py-2.5 rounded-xl focus:outline-none">
+                </div>
+                <div class="flex space-x-2 overflow-x-auto pb-2">
+                    <button class="flex flex-col items-center justify-center min-w-[60px] py-2 bg-green-800 text-white rounded-xl text-[11px] font-medium">⛰️ <span>All</span></button>
+                    <button class="flex flex-col items-center justify-center min-w-[60px] py-2 bg-gray-100 text-gray-600 rounded-xl text-[11px] font-medium">🌲 <span>Mountains</span></button>
+                    <button class="flex flex-col items-center justify-center min-w-[60px] py-2 bg-gray-100 text-gray-600 rounded-xl text-[11px] font-medium">🏖️ <span>Beaches</span></button>
+                </div>
+            </div>
+            
+            <div class="flex-1 overflow-y-auto px-6 py-3 space-y-4">
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-xs font-bold text-gray-800">Popular This Week</h3>
+                        <span class="text-[10px] text-green-700 font-semibold cursor-pointer">See all</span>
+                    </div>
+                    <div onclick="switchScreen('screen-3')" class="relative rounded-2xl overflow-hidden h-36 shadow-md bg-cover bg-center flex flex-col justify-end p-3 text-white cursor-pointer" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=500');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                        <div class="relative z-10">
+                            <span class="bg-green-600 text-[9px] px-2 py-0.5 rounded-full font-medium">Featured</span>
+                            <h4 class="text-sm font-bold mt-1">Valley of Flowers Trek</h4>
+                            <p class="text-[10px] text-gray-200">Uttarakhand • 8.2 km • Moderate</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white border-t border-gray-100 py-3 px-6 flex justify-between items-center text-gray-400">
+                <button onclick="switchScreen('screen-2')" class="flex flex-col items-center text-green-700"><span class="text-sm">🏠</span><span class="text-[9px]">Home</span></button>
+                <button onclick="switchScreen('screen-3')" class="flex flex-col items-center"><span class="text-sm">🧭</span><span class="text-[9px]">Explore</span></button>
+                <button class="flex flex-col items-center"><span class="text-sm">🔖</span><span class="text-[9px]">Saved</span></button>
+                <button class="flex flex-col items-center"><span class="text-sm">👤</span><span class="text-[9px]">Profile</span></button>
+            </div>
+        </div>
+
+        <!-- TELA 3: USE (Detalhes) -->
+        <div id="screen-3" class="app-screen absolute inset-0 bg-white flex flex-col justify-between z-0 hidden text-gray-900 overflow-y-auto">
+            <div class="relative h-56 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=600');">
+                <div class="absolute top-4 left-4 w-8 h-8 bg-white/80 rounded-full flex items-center justify-center cursor-pointer" onclick="switchScreen('screen-2')">←</div>
+            </div>
+            <div class="flex-1 bg-white -mt-6 rounded-t-3xl p-6 relative flex flex-col justify-between">
+                <div>
+                    <h2 class="text-lg font-bold text-gray-900">Valley of Flowers Trek</h2>
+                    <p class="text-xs text-gray-400 mb-4">Uttarakhand • 8.2 km • Moderate</p>
+                    
+                    <div class="flex justify-between bg-gray-50 p-3 rounded-2xl mb-4 text-center">
+                        <div><p class="text-[10px] text-gray-400">Duration</p><p class="text-xs font-bold">4-6 hrs</p></div>
+                        <div><p class="text-[10px] text-gray-400">Highest Point</p><p class="text-xs font-bold">3,600 m</p></div>
+                        <div><p class="text-[10px] text-gray-400">Best Time</p><p class="text-xs font-bold">Jun - Sep</p></div>
+                    </div>
+
+                    <h3 class="text-xs font-bold mb-1">About this trail</h3>
+                    <p class="text-[11px] text-gray-500 leading-relaxed">A breathtaking trek through alpine meadows, vibrant flowers and snow-capped peaks. Perfect for nature lovers and adventure seekers.</p>
+                </div>
+
+                <button onclick="switchScreen('screen-4')" class="w-full bg-green-900 text-white font-medium py-3 rounded-xl text-center text-sm shadow-md mt-4">Start Planning →</button>
+            </div>
+        </div>
+
+        <!-- TELA 4: UNDERSTAND (Planejamento / Opcionais) -->
+        <div id="screen-4" class="app-screen absolute inset-0 bg-white flex flex-col justify-between z-0 hidden text-gray-900 p-6 overflow-y-auto">
+           <div>
+                <div class="flex items-center mb-4">
+                    <span onclick="switchScreen('screen-3')" class="cursor-pointer mr-3 text-sm">←</span>
+                    <h2 class="text-sm font-bold">Plan Your Trip</h2>
+                </div>
+                <p class="text-[10px] text-gray-400 mb-3">Choose your dates and group size</p>
+                
+                <!-- Datas -->
+                <div class="flex space-x-2 mb-4 overflow-x-auto pb-1">
+                    <div class="bg-gray-100 p-2 rounded-xl text-center min-w-[50px]"><p class="text-[9px] text-gray-400">12</p><p class="text-xs font-bold">Jun</p></div>
+                    <div class="bg-green-800 text-white p-2 rounded-xl text-center min-w-[50px]"><p class="text-[9px] text-green-200">13</p><p class="text-xs font-bold">Jun</p></div>
+                    <div class="bg-gray-100 p-2 rounded-xl text-center min-w-[50px]"><p class="text-[9px] text-gray-400">14</p><p class="text-xs font-bold">Jun</p></div>
+                    <div class="bg-gray-100 p-2 rounded-xl text-center min-w-[50px]"><p class="text-[9px] text-gray-400">15</p><p class="text-xs font-bold">Jun</p></div>
+                </div>
+
+                <p class="text-[10px] font-bold text-gray-700 mb-2">Group Size</p>
+                <div class="flex justify-between items-center bg-gray-50 p-3 rounded-xl mb-4 text-xs">
+                    <span>2 people</span>
+                    <span class="font-bold text-gray-400">+</span>
+                </div>
+
+                <p class="text-[10px] font-bold text-gray-700 mb-2">Add-ons</p>
+                <div class="space-y-2 mb-4">
+                    <div class="flex justify-between items-center bg-gray-50 p-2.5 rounded-xl text-xs">
+                        <div><p class="font-bold">Camping Gear</p><p class="text-[9px] text-gray-400">+₹1,200</p></div>
+                        <div class="w-8 h-4 bg-green-800 rounded-full relative p-0.5"><div class="w-3 h-3 bg-white rounded-full ml-auto"></div></div>
+                    </div>
+                    <div class="flex justify-between items-center bg-gray-50 p-2.5 rounded-xl text-xs">
+                        <div><p class="font-bold">Guide</p><p class="text-[9px] text-gray-400">+₹2,000</p></div>
+                        <div class="w-8 h-4 bg-gray-300 rounded-full relative p-0.5"><div class="w-3 h-3 bg-white rounded-full"></div></div>
+                    </div>
+                </div>
+           </div>
+
+           <button onclick="switchScreen('screen-5')" class="w-full bg-green-900 text-white font-medium py-3 rounded-xl text-center text-sm shadow-md">Continue →</button>
+        </div>
+
+        <!-- TELA 5: CONVERT (Confirmação) -->
+        <div id="screen-5" class="app-screen absolute inset-0 bg-white flex flex-col justify-between z-0 hidden text-gray-900 p-6 overflow-y-auto">
+            <div class="text-center pt-4">
+                <div class="w-12 h-12 bg-green-100 text-green-700 rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">🏔️</div>
+                <h2 class="text-base font-bold">You're all set!</h2>
+                <p class="text-[10px] text-gray-400 mb-4">Your trip to Valley of Flowers is confirmed.</p>
+                
+                <div class="bg-gray-50 p-3 rounded-2xl flex items-center space-x-3 mb-4 text-left">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=100" class="w-10 h-10 rounded-lg object-cover">
+                    <div>
+                        <h4 class="text-xs font-bold">Valley of Flowers Trek</h4>
+                        <p class="text-[9px] text-gray-400">13 Jun • 2 people</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-3 rounded-xl text-left text-xs space-y-2">
+                    <div class="flex justify-between"><span class="text-gray-400 text-[10px]">Booking ID</span><span class="font-bold text-[10px]">#TRK7643</span></div>
+                    <div class="flex justify-between border-t border-gray-200 pt-2"><span class="text-gray-400">Total Paid</span><span class="font-bold text-green-700">₹ 12,400</span></div>
+                </div>
+            </div>
+
+            <button onclick="alert('Itinerário baixado com sucesso!')" class="w-full bg-green-900 text-white font-medium py-3 rounded-xl text-center text-sm shadow-md">View Itinerary</button>
+        </div>
+
+    </div>
+
+</body>
+</html>
